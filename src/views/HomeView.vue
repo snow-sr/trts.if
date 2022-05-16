@@ -12,12 +12,12 @@ export default {};
           <h2
             class="text-base text-pink-600 font-semibold tracking-wide uppercase"
           >
-            {Nosso nome}
+            TRTS.IF
           </h2>
           <p
             class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-200 underline sm:text-4xl"
           >
-            <a href="/tetris/play"> A new way to play Tetris. </a>
+            <a href="/play"> A new way to play Tetris. </a>
           </p>
           <p class="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam

@@ -11,14 +11,16 @@
 */
 
 import { sendScoreToLeaderboards } from "./serverFunctions";
+import { useStore } from "../store/game";
 
 // configurando o canvas
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-context.scale(20, 20);
+context.scale(30, 30);
 // (fim) configurando o canvas
 
 var pauseGame = false;
+var lines = [];
 var score = document.getElementById("score");
 var time = 0;
 time;
@@ -38,7 +40,8 @@ function arenaSweep() {
     arena.unshift(row);
     ++y;
 
-    player.score += rowCount * 10;
+    player.score += rowCount * 10; // Cada linha te dá 10 pontos
+    lines.push(rowCount);
     rowCount *= 2;
   }
 }
@@ -176,22 +179,16 @@ function unpause() {
 }
 
 // aumenta a velocidade de queda das peças
+var changed = false;
 function speedUp() {
-  if (player.score / 10 == 0) {
-    dropInterval = 1000;
-  } else if (player.score / 10 == 1) {
-    dropInterval = 800;
-  } else if (player.score / 10 == 6) {
-    dropInterval = 600;
-  } else if (player.score / 10 == 12) {
-    dropInterval = 500;
-  } else if (player.score / 10 == 24) {
-    dropInterval = 300;
-  } else if (player.score / 10 == 48) {
-    dropInterval = 200;
-  } else {
-    dropInterval;
+  if (player.score % 10 === 0 && player.score !== 0 && !changed) {
+    console.log("speed up", dropInterval, player.score, changed);
+    dropInterval -= 1000;
+    changed = true;
+    console.log("speed up", dropInterval, player.score, changed);
   }
+
+  gameStore.setGameTime(dropInterval);
 }
 
 // função para resetar o jogo;
@@ -201,7 +198,7 @@ function restart() {
   player.score = 0;
   playerReset();
 
-  updateScore();
+  updateScore(gameStore);
 
   update((time = 0));
 }
@@ -218,7 +215,7 @@ function playerDrop() {
     merge(arena, player);
     playerReset();
     arenaSweep();
-    updateScore();
+    updateScore(gameStore);
   }
   dropCounter = 0;
 }
@@ -278,6 +275,7 @@ function update(time = 0) {
     speedUp();
     draw();
     requestAnimationFrame(update);
+    gameStore.setPlayer(player);
   } else if (player.alive == false) {
     let user = {
       name: "hahaha",
@@ -295,9 +293,8 @@ function update(time = 0) {
   }
 }
 
-function updateScore() {
-  score = document.getElementById("score");
-  score.innerText = player.score;
+function updateScore(gameStore) {
+  gameStore.setPlayer(player.score);
 }
 
 document.addEventListener("keydown", (event) => {
@@ -342,7 +339,9 @@ export const player = {
   alive: true,
 };
 
+const gameStore = useStore();
+
 // iniciando o jogo:
 playerReset();
-updateScore();
+updateScore(gameStore);
 update();
