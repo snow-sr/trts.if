@@ -1,8 +1,10 @@
 import { createApp } from "vue";
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 import Home from "./views/HomeView.vue";
 import Play from "./views/PlayView.vue";
+import { createPinia } from "pinia";
+
 import "@/assets/base.css";
 import "tw-elements";
 
@@ -12,8 +14,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(createPinia()).mount("#app");

@@ -31,29 +31,29 @@
         </svg>
       </button>
       <div
-        class="collapse navbar-collapse flex-grow items-center"
+        class="collapse navbar-collapse flex-grow items-center justify-between"
         id="navbarSupportedContent1"
       >
-        <a class="text-xl text-white pr-2 font-semibold" href="#">Trts.if</a>
+        <a class="text-xl text-white pr-2 font-semibold" href="/">Trts.if</a>
         <!-- Left links -->
         <ul class="navbar-nav flex flex-col list-style-none">
           <li class="nav-item p-2">
-            <a class="nav-link text-white" href="#">Play</a>
+            <a class="nav-link text-white" href="/play">Play</a>
           </li>
           <li class="nav-item p-2">
             <a
               class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0"
-              href="#"
-              >Team</a
+              href="/principal"
+              >Leaderboards</a
             >
           </li>
-          <li class="nav-item p-2">
+          <!-- <li class="nav-item p-2">
             <a
               class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0"
-              href="#"
-              >Projects</a
+              href="/createGameRules"
+              >Create your own rules!</a
             >
-          </li>
+          </li> -->
         </ul>
         <!-- Left links -->
       </div>
