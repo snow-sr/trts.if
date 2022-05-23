@@ -41,6 +41,7 @@ function arenaSweep() {
     ++y;
 
     player.score += rowCount * 10; // Cada linha te dá 10 pontos
+    speedUp();
     lines.push(rowCount);
     rowCount *= 2;
   }
@@ -179,14 +180,9 @@ function unpause() {
 }
 
 // aumenta a velocidade de queda das peças
-var changed = false;
 function speedUp() {
-  if (player.score % 10 === 0 && player.score !== 0 && !changed) {
-    console.log("speed up", dropInterval, player.score, changed);
-    dropInterval -= 1000;
-    changed = true;
-    console.log("speed up", dropInterval, player.score, changed);
-  }
+  console.log("Speed up:" + dropInterval);
+  dropInterval -= 100;
 
   gameStore.setGameTime(dropInterval);
 }
@@ -272,7 +268,6 @@ function update(time = 0) {
 
     lastTime = time;
 
-    speedUp();
     draw();
     requestAnimationFrame(update);
     gameStore.setPlayer(player);

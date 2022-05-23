@@ -5,7 +5,6 @@ import Home from "./views/HomeView.vue";
 import Play from "./views/PlayView.vue";
 import Principal from "./views/PrincipalView.vue";
 
-
 import { createPinia } from "pinia";
 import "@/assets/base.css";
 import "tw-elements";
@@ -13,7 +12,7 @@ import "tw-elements";
 const routes = [
   { path: "/", component: Home },
   { path: "/Play", component: Play },
-  { path: "/Principal", component: Principal}
+  { path: "/Principal", component: Principal },
 ];
 
 const router = createRouter({
